@@ -83,6 +83,7 @@ function update() {
     const search = <HTMLInputElement> document.getElementById("search");
     const result = <HTMLParagraphElement> document.getElementById("result");
     const numResults = <HTMLDivElement> document.getElementById("num-results");
+    const numQuantity = <HTMLDivElement> document.getElementById("num-quantity");
     const sort = <HTMLSelectElement> document.getElementById("sort");
     const order = <HTMLDivElement> document.getElementById("arrow");
 
@@ -101,6 +102,17 @@ function update() {
     cards = Filter.filterAll(cards, searchstring, FilterType.Compiled);
 
     numResults.innerText = "Results: " + cards.length;
+
+    let expregex = /expansion:\(?([a-z0-9\|]+)\)?/;
+    let expansions = searchstring.match(expregex);
+    let expansionlist = Object.keys(Types.Expansion);
+    if ( expansions !== null) {
+        let exps = expansions[1].split("|");
+        expansionlist = expansionlist.filter(exp => exps.some(e => exp.toLowerCase().indexOf(e)>=0))
+    }
+    numQuantity.innerText = "Quantity: " + cards.reduce((acc, card) => 
+            acc + expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+b,0),
+        0);
 
     cards = cards.sort((a, b) => {
         let propa = (a as any)[sortby];

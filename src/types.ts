@@ -390,7 +390,7 @@ namespace Types {
     export class PlayCard extends Card {
         constructor(expansion: Expansion, type: CardType, name: string, public cost: number, public vp: number,
                     public flag: Flag[] = [], public power: Power[] = [], public extravp: ExtraVP[] = [],
-                    public quantity: Quantity | undefined = undefined)
+                    public quantity: Quantity)
         {
             super(expansion, type, name);
         }
