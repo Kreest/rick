@@ -22,6 +22,7 @@
     <div class="flex row">
         <input class="flex-70" type="text" id="search" placeholder="Search here..." autofocus />
         <div class="flex flex-5 middle" id="num-results"></div>
+        <div class="flex flex-5 middle" id="num-quantity"></div>
         <div class="flex flex-15 middle flex-start">
             <label class="select">
                 <select id="sort">
@@ -40,8 +41,8 @@
     <div class="flex">
         <p class="flex-97">
             Examples:
-            <code>flags:start expansion:!(alien|xeno)</code>,
-            <code>cost:<=4 vp:>=1 flags:military expansion:(base|storm|rebel)</code>,
+            <code>flag:start expansion:!(alien|xeno)</code>,
+            <code>cost:<=4 vp:>=1 flag:military expansion:(base|storm|rebel)</code>,
             <code>flag:(imperium) type:dev</code>,
             <code>power:get_vp power:consume_gene</code>,
             <code>extravp:rebel</code>
