@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Race For The Galaxy Card Katalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="res/style.css">
+    <link rel="stylesheet" href="res/flex.css">
+    <link rel="search" type="application/opensearchdescription+xml"
+                       title="Race For The Galaxy Card Katalog" href="/search.xml">
+    <script src="cards.js"></script>
+</head>
+<body>
+    <header>
+        <div class="name">
+            Race For The Galaxy Card Katalog
+        </div>
+        <div class="disclaimer">
+            This is an unofficial website. "Race for The Galaxy" is not affiliated with Rio Grande Games.
+            All materials belong to Rio Grande Games.
+        </div>
+    </header>
+    <div class="flex row">
+        <input class="flex-70" type="text" id="search" placeholder="Search here..." autofocus />
+        <div class="flex flex-5 middle" id="num-results"></div>
+        <div class="flex flex-15 middle flex-start">
+            <label class="select">
+                <select id="sort">
+                    <option>Type</option>
+                    <option>Name</option>
+                    <option selected>Cost</option>
+                    <option>Speed</option>
+                    <option>Range</option>
+                    <option>Target</option>
+                    <option>Artist</option>
+                </select>
+            </label>
+            <span id="arrow" class="round clickable rotatable">↓</span>
+        </div>
+    </div>
+    <div class="flex">
+        <p class="flex-97">
+            Examples:
+            <code>flags:start expansion:!(alien|xeno)</code>,
+            <code>cost:<=4 vp:>=1 flags:military expansion:(base|storm|rebel)</code>,
+            <code>flag:(imperium) type:dev</code>,
+            <code>power:get_vp power:consume_gene</code>,
+            <code>extravp:rebel</code>
+
+        </p>
+    </div>
+    <div id="result" class="flex row wrap flex-start"></div>
+</body>
+</html>
