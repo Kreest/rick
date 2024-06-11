@@ -104,15 +104,19 @@ function update() {
     numResults.innerText = "Results: " + cards.length;
 
     let expregex = /expansion:\(?([a-z0-9\|]+)\)?/;
-    let expansions = searchstring.match(expregex);
+    let searchexpansions = searchstring.match(expregex);
     let expansionlist = Object.keys(Types.Expansion);
-    if ( expansions !== null) {
-        let exps = expansions[1].split("|");
+    if (searchexpansions !== null) {
+        let exps = searchexpansions[1].split("|");
         expansionlist = expansionlist.filter(exp => exps.some(e => exp.toLowerCase().indexOf(e)>=0))
     }
     numQuantity.innerText = "Quantity: " + cards.reduce((acc, card) => 
-            acc + expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+b,0),
+            acc + expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+(b?b:0),0),
         0);
+    cards.forEach(card => {
+    console.log(card);
+       console.log(expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+(b? b:0),0));
+    });
 
     cards = cards.sort((a, b) => {
         let propa = (a as any)[sortby];
