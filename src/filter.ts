@@ -11,6 +11,7 @@ namespace Filter {
 
     export function filterAll(cards: Card[], searchstring: string, typ: FilterType) {
         searchstring = searchstring.replace(/&/g, "and");
+        searchstring = expandAbbreviations(searchstring);
         switch (typ) {
             case FilterType.Old: throw new Error("Old filter not supported");
             case FilterType.Compiled:
@@ -21,5 +22,24 @@ namespace Filter {
                 const fn = Filter.Compiled.compile(ast);
                 return fn(cards);
         }
+    }
+
+    function expandAbbreviations(s: string): string {
+        let abbreviations = [
+            ["t", "type"],
+            ["n", "name"],
+            ["c", "cost"],
+            ["f", "flag"],
+            ["p", "power"],
+            ["g", "good"],
+            ["e", "expansion"],
+            ["exp", "expansion"],
+        ];
+        abbreviations.forEach((map) => {
+            let re = new RegExp('\b' + map[0] + ":", "gi");
+            console.log(re);
+            s = s.replace(new RegExp("\\b" + map[0] + ":", "gi"), map[1] + ":");
+        });
+        return s;
     }
 }

@@ -113,10 +113,6 @@ function update() {
     numQuantity.innerText = "Quantity: " + cards.reduce((acc, card) => 
             acc + expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+(b?b:0),0),
         0);
-    cards.forEach(card => {
-    console.log(card);
-       console.log(expansionlist.map(exp => (card as Types.PlayCard).quantity.get(Types.Expansion[exp as keyof typeof Types.Expansion]) as number).reduce((a, b) => a+(b? b:0),0));
-    });
 
     cards = cards.sort((a, b) => {
         let propa = (a as any)[sortby];

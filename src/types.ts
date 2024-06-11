@@ -433,7 +433,7 @@ namespace Types {
             }
 
             if(this.power != null && this.power.length > 0) {
-                text += "<b>Powers</b>:<br/>" + this.power.map(p => PhaseShort.get(p.phase) + (p.times != 0 ? " x"+p.times:"") + ": " + p.code.join(", ").toLowerCase() + (p.value != 0 ? " " + p.value : null)).join("<br/>") + "<br/>"; //TODO: better display here
+                text += "<b>Powers</b>:<br/>" + this.power.map(p => PhaseShort.get(p.phase) + ": " + (p.times != 0 ? " x"+p.times:"") + " " + p.code.join(", ").toLowerCase() + (p.value != 0 ? " " + p.value : "")).join("<br/>") + "<br/>"; //TODO: better display here
             }
 
             if(this.extravp != null && this.extravp.length > 0) {
