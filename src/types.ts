@@ -231,6 +231,14 @@ namespace Types {
         [Phase.Produce, "V  "],
     ])
 
+    export enum GoodType {
+        NOVELTY = "Novelty",
+        RARE = "Rare",
+        GENE = "Gene",
+        ALIEN = "Alien",
+        ANY = "Any",
+    }
+
     export type Power = {
         phase: Phase;
         code: PhaseCode[];
@@ -390,7 +398,7 @@ namespace Types {
     export class PlayCard extends Card {
         constructor(expansion: Expansion, type: CardType, name: string, public cost: number, public vp: number,
                     public flag: Flag[] = [], public power: Power[] = [], public extravp: ExtraVP[] = [],
-                    public quantity: Quantity)
+                    public quantity: Quantity, public good: GoodType | undefined)
         {
             super(expansion, type, name);
         }
@@ -422,6 +430,9 @@ namespace Types {
             text += "<b>Name</b>: " + this.name + "<br/>";
             text += "<b>Cost</b>: " + this.cost + " ";
             text += "<b>VP</b>: " + this.vp + "<br/>";
+            if(this.good != null) {
+                text += "<b>Good</b>: " + this.good + "<br/>";
+            }
             text += "<b>Type</b>: " + this.type + "<br/>";
             text += "<b>Quantity</b>: " +
                 Object.keys(Expansion).filter((exp) => this.quantity?.has(Expansion[exp as keyof typeof Expansion]))
